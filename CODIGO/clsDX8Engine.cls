@@ -18,7 +18,6 @@ Option Explicit
 
 Private meteo_particle As Long
 
-
 Public bRunning As Boolean
 
 Private Const FVF = D3DFVF_XYZRHW Or D3DFVF_TEX1 Or D3DFVF_DIFFUSE Or D3DFVF_SPECULAR
@@ -114,8 +113,8 @@ Dim light_last As Long
 
 Private Type Particle
     friction As Single
-    X As Single
-    Y As Single
+    x As Single
+    y As Single
     matar As Boolean
     vector_x As Single
     vector_y As Single
@@ -493,12 +492,12 @@ Private Function Font_Check(ByVal font_index As Long) As Boolean
     End If
 End Function
 
-Function MakeVector(ByVal X As Single, ByVal Y As Single, ByVal Z As Single) As D3DVECTOR
+Function MakeVector(ByVal x As Single, ByVal y As Single, ByVal Z As Single) As D3DVECTOR
 '*****************************************************
 '****** Coded by Menduz (lord.yo.wo@gmail.com) *******
 '*****************************************************
-  MakeVector.X = X
-  MakeVector.Y = Y
+  MakeVector.x = x
+  MakeVector.y = y
   MakeVector.Z = Z
 End Function
 
@@ -581,8 +580,8 @@ Public Sub Engine_Init()
     ScrollPixelsPerFrameX = 8
     ScrollPixelsPerFrameY = 8
     
-    UserPos.X = 50
-    UserPos.Y = 50
+    UserPos.x = 50
+    UserPos.y = 50
     
     MinXBorder = XMinMapSize + (frmMain.renderer.ScaleWidth / 64)
     MaxXBorder = XMaxMapSize - (frmMain.renderer.ScaleWidth / 64)
@@ -617,12 +616,12 @@ End
 End Sub
 
 
-Private Function CreateTLVertex(X As Single, Y As Single, Z As Single, rhw As Single, color As Long, Specular As Long, tu As Single, tv As Single) As TLVERTEX
+Private Function CreateTLVertex(x As Single, y As Single, Z As Single, rhw As Single, color As Long, Specular As Long, tu As Single, tv As Single) As TLVERTEX
 '*****************************************************
 '****** Coded by Menduz (lord.yo.wo@gmail.com) *******
 '*****************************************************
-    CreateTLVertex.X = X
-    CreateTLVertex.Y = Y
+    CreateTLVertex.x = x
+    CreateTLVertex.y = y
     CreateTLVertex.Z = Z
     CreateTLVertex.rhw = rhw
     CreateTLVertex.color = color
@@ -639,17 +638,17 @@ Public Sub Engine_ActFPS()
     End If
 End Sub
 
-Function InMapBounds(ByVal X As Integer, ByVal Y As Integer) As Boolean
+Function InMapBounds(ByVal x As Integer, ByVal y As Integer) As Boolean
 '*****************************************************************
 'Checks to see if a tile position is in the maps bounds
 '*****************************************************************
-    If X < XMinMapSize Or X > XMaxMapSize Or Y < YMinMapSize Or Y > YMaxMapSize Then
+    If x < XMinMapSize Or x > XMaxMapSize Or y < YMinMapSize Or y > YMaxMapSize Then
         Exit Function
     End If
     
     InMapBounds = True
 End Function
-Public Sub Draw_GrhIndex(ByVal grh_index As Long, ByVal X As Integer, ByVal Y As Integer)
+Public Sub Draw_GrhIndex(ByVal grh_index As Long, ByVal x As Integer, ByVal y As Integer)
     If grh_index <= 0 Then Exit Sub
     Dim Rgb_List(3) As Long
     
@@ -659,12 +658,12 @@ Public Sub Draw_GrhIndex(ByVal grh_index As Long, ByVal X As Integer, ByVal Y As
     Rgb_List(3) = D3DColorXRGB(255, 255, 255)
     
     Device_Box_Textured_Render grh_index, _
-        X, Y, _
+        x, y, _
         GrhData(grh_index).pixelWidth, GrhData(grh_index).pixelHeight, _
         Rgb_List, _
         GrhData(grh_index).sX, GrhData(grh_index).sY
 End Sub
-Private Sub Draw_Grh(ByRef Grh As Grh, ByVal X As Integer, ByVal Y As Integer, ByVal center As Byte, ByVal Animate As Byte, Optional ByVal Alpha As Boolean, Optional ByVal map_x As Byte = 1, Optional ByVal map_y As Byte = 1, Optional ByVal angle As Single)
+Private Sub Draw_Grh(ByRef Grh As Grh, ByVal x As Integer, ByVal y As Integer, ByVal center As Byte, ByVal Animate As Byte, Optional ByVal Alpha As Boolean, Optional ByVal map_x As Byte = 1, Optional ByVal map_y As Byte = 1, Optional ByVal angle As Single)
     Dim CurrentGrhIndex As Long
     If Grh.GrhIndex = 0 Then Exit Sub
     If Animate Then
@@ -690,18 +689,18 @@ Private Sub Draw_Grh(ByRef Grh As Grh, ByVal X As Integer, ByVal Y As Integer, B
     'Center Grh over X,Y pos
     If center Then
         If GrhData(CurrentGrhIndex).TileWidth <> 1 Then
-            X = X - Int(GrhData(CurrentGrhIndex).TileWidth * (32 \ 2)) + 32 \ 2
+            x = x - Int(GrhData(CurrentGrhIndex).TileWidth * (32 \ 2)) + 32 \ 2
         End If
 
         If GrhData(Grh.GrhIndex).TileHeight <> 1 Then
-            Y = Y - Int(GrhData(CurrentGrhIndex).TileHeight * 32) + 32
+            y = y - Int(GrhData(CurrentGrhIndex).TileHeight * 32) + 32
         End If
     End If
     
 
 
     Device_Box_Textured_Render CurrentGrhIndex, _
-        X, Y, _
+        x, y, _
         GrhData(CurrentGrhIndex).pixelWidth, GrhData(CurrentGrhIndex).pixelHeight, _
         MapData(map_x, map_y).light_value, _
         GrhData(CurrentGrhIndex).sX, GrhData(CurrentGrhIndex).sY, _
@@ -764,7 +763,7 @@ End Sub
 
 Sub ShowNextFrame()
 Dim i As Grh
-
+Dim Grafico As Long
 
 
     Dim Rgb_List(0 To 3) As Long
@@ -778,11 +777,15 @@ Dim i As Grh
         
         
 If MostrarBody Then
-    
-    Call Draw_GrhIndex(33277, 335, 195)
-     Call Draw_GrhIndex(2531, 336, 216)
+Grafico = frmMain.Text1.Text
+    If Grafico = 33277 Then
+         Call Draw_GrhIndex(33277, 335, 195)
+         Call Draw_GrhIndex(2531, 336, 216)
+    Else
+        Call Draw_GrhIndex(Grafico, userY, userX)
+    End If
 End If
-Call RenderScreen(UserPos.X - AddtoUserPos.X, UserPos.Y - AddtoUserPos.Y, 0, 0)
+Call RenderScreen(UserPos.x - AddtoUserPos.x, UserPos.y - AddtoUserPos.y, 0, 0)
 End Sub
 
 Sub RenderScreen(ByVal tilex As Integer, ByVal tiley As Integer, ByVal PixelOffsetX As Integer, ByVal PixelOffsetY As Integer)
@@ -795,15 +798,15 @@ Sub RenderScreen(ByVal tilex As Integer, ByVal tiley As Integer, ByVal PixelOffs
     Dim ScreenY             As Integer  'Keeps track of where to place tile on screen               As Integer
 
         If meteo_particle <> 0 Then
-        'Screen positions were hardcoded by now
-        If ParticulasCentradas Then
-        ScreenX = 350
-        ScreenY = 230
-        Else
-        ScreenX = 300
-        ScreenY = 0
-        End If
-        
+            'Screen positions were hardcoded by now
+            If ParticulasCentradas Then
+                ScreenX = 300
+                ScreenY = 0
+            Else
+                ScreenX = 350
+                ScreenY = 230
+            End If
+       
         Call Particle_Group_Render(meteo_particle, ScreenX, ScreenY)
     End If
     
@@ -831,41 +834,41 @@ Public Function Grh_Info_Get(ByVal grh_index As Long, ByRef file_path As String,
        
     Grh_Info_Get = True
 End Function
-Private Function Convert_Tile_To_View_X(ByVal X As Integer) As Integer
+Private Function Convert_Tile_To_View_X(ByVal x As Integer) As Integer
 '**************************************************************
 'Author: Aaron Perkins - Modified by Juan Martín Sotuyo Dodero
 'Last Modify Date: 10/07/2002
 'Convert tile position into position in view area
 '**************************************************************
     'If engine_windowed Then
-        Convert_Tile_To_View_X = ((X - 1) * 32)
+        Convert_Tile_To_View_X = ((x - 1) * 32)
    ' Else
       '  Convert_Tile_To_View_X = view_screen_left + ((x - 1) * base_tile_size)
   '  End If
 End Function
 
-Private Function Convert_Tile_To_View_Y(ByVal Y As Integer) As Integer
+Private Function Convert_Tile_To_View_Y(ByVal y As Integer) As Integer
 '**************************************************************
 'Author: Aaron Perkins - Modified by Juan Martín Sotuyo Dodero
 'Last Modify Date: 10/07/2002
 'Convert tile position into position in view area
 '**************************************************************
    ' If engine_windowed Then
-        Convert_Tile_To_View_Y = ((Y - 1) * 32)
+        Convert_Tile_To_View_Y = ((y - 1) * 32)
     'Else
      '   Convert_Tile_To_View_Y = view_screen_top + ((y - 1) * base_tile_size)
     'End If
 End Function
 
-Private Function Geometry_Create_TLVertex(ByVal X As Single, ByVal Y As Single, ByVal Z As Single, _
+Private Function Geometry_Create_TLVertex(ByVal x As Single, ByVal y As Single, ByVal Z As Single, _
                                             ByVal rhw As Single, ByVal color As Long, ByVal Specular As Long, tu As Single, _
                                             ByVal tv As Single) As TLVERTEX
 '**************************************************************
 'Author: Aaron Perkins
 'Last Modify Date: 10/07/2002
 '**************************************************************
-    Geometry_Create_TLVertex.X = X
-    Geometry_Create_TLVertex.Y = Y
+    Geometry_Create_TLVertex.x = x
+    Geometry_Create_TLVertex.y = y
     Geometry_Create_TLVertex.Z = Z
     Geometry_Create_TLVertex.rhw = rhw
     Geometry_Create_TLVertex.color = color
@@ -874,10 +877,10 @@ Private Function Geometry_Create_TLVertex(ByVal X As Single, ByVal Y As Single, 
     Geometry_Create_TLVertex.tv = tv
 End Function
 
-Private Function Geometry_Create_TLVertex2(X As Single, Y As Single, Z As Single, rhw As Single, color As Long, Specular As Long, tu1 As Single, tv1 As Single, tu2 As Single, tv2 As Single) As TLVERTEX2
+Private Function Geometry_Create_TLVertex2(x As Single, y As Single, Z As Single, rhw As Single, color As Long, Specular As Long, tu1 As Single, tv1 As Single, tu2 As Single, tv2 As Single) As TLVERTEX2
 'mz
-Geometry_Create_TLVertex2.X = X
-Geometry_Create_TLVertex2.Y = Y
+Geometry_Create_TLVertex2.x = x
+Geometry_Create_TLVertex2.y = y
 Geometry_Create_TLVertex2.Z = Z
 Geometry_Create_TLVertex2.rhw = rhw
 Geometry_Create_TLVertex2.color = color
@@ -1157,10 +1160,10 @@ Public Sub Start()
     base_light = ARGB(day_r_old, day_g_old, day_b_old, 255)
     
 DoEvents
-vertList(0).X = 0: vertList(0).Y = 0
-vertList(1).X = 800: vertList(1).Y = 0
-vertList(2).X = 0: vertList(2).Y = 600
-vertList(3).X = 800: vertList(3).Y = 600
+vertList(0).x = 0: vertList(0).y = 0
+vertList(1).x = 800: vertList(1).y = 0
+vertList(2).x = 0: vertList(2).y = 600
+vertList(3).x = 800: vertList(3).y = 600
 vertList(0).rhw = 1
 vertList(1).rhw = 1
 vertList(2).rhw = 1
@@ -1214,8 +1217,8 @@ End Function
 
 Private Function VectorToRGBA(Vec As D3DVECTOR, fHeight As Single) As Long
 Dim r As Integer, g As Integer, b As Integer, A As Integer
-    r = 127 * Vec.X + 128
-    g = 127 * Vec.Y + 128
+    r = 127 * Vec.x + 128
+    g = 127 * Vec.y + 128
     b = 127 * Vec.Z + 128
     A = 255 * fHeight
     VectorToRGBA = D3DColorARGB(A, r, g, b)
@@ -1319,14 +1322,14 @@ Public Function Particle_Group_Remove_All() As Boolean
 'Last Modify Date: 1/04/2003
 '
 '*****************************************************************
-    Dim index As Long
+    Dim Index As Long
     
-    For index = 1 To particle_group_last
+    For Index = 1 To particle_group_last
         'Make sure it's a legal index
-        If Particle_Group_Check(index) Then
-            Particle_Group_Destroy index
+        If Particle_Group_Check(Index) Then
+            Particle_Group_Destroy Index
         End If
-    Next index
+    Next Index
     
     Particle_Group_Remove_All = True
 End Function
@@ -1743,8 +1746,8 @@ Private Sub Particle_Render(ByRef temp_particle As Particle, ByVal screen_x As I
             'Start new particle
         
             InitGrh temp_particle.Grh, grh_index, alpha_blend
-            temp_particle.X = RandomNumber(x1, x2) - (32 / 2)
-            temp_particle.Y = RandomNumber(y1, y2) - (32 / 2)
+            temp_particle.x = RandomNumber(x1, x2) - (32 / 2)
+            temp_particle.y = RandomNumber(y1, y2) - (32 / 2)
             temp_particle.vector_x = RandomNumber(vecx1, vecx2)
             temp_particle.vector_y = RandomNumber(vecy1, vecy2)
             temp_particle.angle = angle
@@ -1763,7 +1766,7 @@ Private Sub Particle_Render(ByRef temp_particle As Particle, ByVal screen_x As I
             
             If gravity = True Then
                 temp_particle.vector_y = temp_particle.vector_y + grav_strength
-                If temp_particle.Y > 0 Then
+                If temp_particle.y > 0 Then
                     'bounce
                     temp_particle.vector_y = bounce_strength
                 End If
@@ -1779,8 +1782,8 @@ Private Sub Particle_Render(ByRef temp_particle As Particle, ByVal screen_x As I
         End If
         
         'Add in vector
-        temp_particle.X = temp_particle.X + (temp_particle.vector_x \ temp_particle.friction)
-        temp_particle.Y = temp_particle.Y + (temp_particle.vector_y \ temp_particle.friction)
+        temp_particle.x = temp_particle.x + (temp_particle.vector_x \ temp_particle.friction)
+        temp_particle.y = temp_particle.y + (temp_particle.vector_y \ temp_particle.friction)
     
         'decrement counter
          temp_particle.alive_counter = temp_particle.alive_counter - 1
@@ -1791,12 +1794,12 @@ Private Sub Particle_Render(ByRef temp_particle As Particle, ByVal screen_x As I
     'Draw it
     If grh_resize = True Then
         If temp_particle.Grh.GrhIndex Then
-             Grh_Render_Advance temp_particle.Grh, temp_particle.X + screen_x, temp_particle.Y + screen_y, grh_resizex, grh_resizey, Rgb_List(), True, True, alpha_blend
+             Grh_Render_Advance temp_particle.Grh, temp_particle.x + screen_x, temp_particle.y + screen_y, grh_resizex, grh_resizey, Rgb_List(), True, True, alpha_blend
             Exit Sub
         End If
     End If
     If temp_particle.Grh.GrhIndex Then
-        Grh_Render temp_particle.Grh, temp_particle.X + screen_x, temp_particle.Y + screen_y, Rgb_List(), True, True, alpha_blend
+        Grh_Render temp_particle.Grh, temp_particle.x + screen_x, temp_particle.y + screen_y, Rgb_List(), True, True, alpha_blend
     End If
 End Sub
 Public Function Particle_Type_Get(ByVal particle_index As Long) As Long

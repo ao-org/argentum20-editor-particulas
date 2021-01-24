@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmMain 
    BackColor       =   &H00E0E0E0&
@@ -9,7 +9,7 @@ Begin VB.Form frmMain
    ClientHeight    =   11220
    ClientLeft      =   4905
    ClientTop       =   2385
-   ClientWidth     =   15780
+   ClientWidth     =   17010
    ClipControls    =   0   'False
    BeginProperty Font 
       Name            =   "Tahoma"
@@ -28,9 +28,540 @@ Begin VB.Form frmMain
    MinButton       =   0   'False
    ScaleHeight     =   748
    ScaleMode       =   3  'Pixel
-   ScaleWidth      =   1052
+   ScaleWidth      =   1134
    StartUpPosition =   2  'CenterScreen
    Visible         =   0   'False
+   Begin VB.Frame frmSettings 
+      BorderStyle     =   0  'None
+      Height          =   2190
+      Left            =   480
+      TabIndex        =   41
+      Top             =   8775
+      Width           =   7560
+      Begin VB.CommandButton cmdDM 
+         Caption         =   "O"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   14
+         Left            =   6480
+         Style           =   1  'Graphical
+         TabIndex        =   135
+         Top             =   600
+         Width           =   240
+      End
+      Begin VB.CommandButton cmdDM 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   13
+         Left            =   6480
+         Picture         =   "frmMain.frx":4282
+         Style           =   1  'Graphical
+         TabIndex        =   134
+         Top             =   840
+         Width           =   240
+      End
+      Begin VB.CommandButton cmdDM 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   12
+         Left            =   6720
+         Picture         =   "frmMain.frx":4569
+         Style           =   1  'Graphical
+         TabIndex        =   133
+         Top             =   600
+         Width           =   240
+      End
+      Begin VB.CommandButton cmdDM 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   11
+         Left            =   6240
+         Picture         =   "frmMain.frx":4858
+         Style           =   1  'Graphical
+         TabIndex        =   132
+         Top             =   600
+         Width           =   240
+      End
+      Begin VB.CommandButton cmdDM 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   10
+         Left            =   6480
+         Picture         =   "frmMain.frx":4B48
+         Style           =   1  'Graphical
+         TabIndex        =   131
+         Top             =   360
+         Width           =   240
+      End
+      Begin VB.TextBox txtrx 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   3150
+         MaxLength       =   4
+         TabIndex        =   58
+         Text            =   "0"
+         Top             =   1395
+         Width           =   495
+      End
+      Begin VB.TextBox txtPCount 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   1320
+         MaxLength       =   4
+         TabIndex        =   57
+         Text            =   "20"
+         Top             =   240
+         Width           =   495
+      End
+      Begin VB.TextBox txtX1 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   1320
+         MaxLength       =   4
+         TabIndex        =   56
+         Text            =   "0"
+         Top             =   480
+         Width           =   495
+      End
+      Begin VB.TextBox txtX2 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   1320
+         MaxLength       =   4
+         TabIndex        =   55
+         Text            =   "0"
+         Top             =   720
+         Width           =   495
+      End
+      Begin VB.TextBox txtY1 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   1320
+         MaxLength       =   4
+         TabIndex        =   54
+         Text            =   "0"
+         Top             =   960
+         Width           =   495
+      End
+      Begin VB.TextBox txtY2 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   1320
+         MaxLength       =   4
+         TabIndex        =   53
+         Text            =   "0"
+         Top             =   1200
+         Width           =   495
+      End
+      Begin VB.TextBox txtAngle 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   1320
+         MaxLength       =   4
+         TabIndex        =   52
+         Text            =   "0"
+         Top             =   1605
+         Width           =   495
+      End
+      Begin VB.TextBox vecx1 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   3150
+         MaxLength       =   4
+         TabIndex        =   51
+         Text            =   "-10"
+         Top             =   240
+         Width           =   495
+      End
+      Begin VB.TextBox vecx2 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   3150
+         MaxLength       =   4
+         TabIndex        =   50
+         Text            =   "10"
+         Top             =   480
+         Width           =   495
+      End
+      Begin VB.TextBox vecy1 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   3150
+         MaxLength       =   4
+         TabIndex        =   49
+         Text            =   "-50"
+         Top             =   720
+         Width           =   495
+      End
+      Begin VB.TextBox vecy2 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   3150
+         MaxLength       =   4
+         TabIndex        =   48
+         Text            =   "0"
+         Top             =   960
+         Width           =   495
+      End
+      Begin VB.TextBox life1 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   5115
+         MaxLength       =   4
+         TabIndex        =   47
+         Text            =   "10"
+         Top             =   240
+         Width           =   495
+      End
+      Begin VB.TextBox life2 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   5115
+         MaxLength       =   4
+         TabIndex        =   46
+         Text            =   "50"
+         Top             =   480
+         Width           =   495
+      End
+      Begin VB.TextBox fric 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   5115
+         MaxLength       =   4
+         TabIndex        =   45
+         Text            =   "5"
+         Top             =   840
+         Width           =   495
+      End
+      Begin VB.CheckBox chkAlphaBlend 
+         Caption         =   "Alpha Blend"
+         Height          =   255
+         Left            =   5280
+         TabIndex        =   44
+         Top             =   1320
+         Value           =   1  'Checked
+         Width           =   1215
+      End
+      Begin VB.CheckBox chkresize 
+         Caption         =   "Resize"
+         Height          =   195
+         Left            =   2400
+         TabIndex        =   43
+         Top             =   1920
+         Width           =   1245
+      End
+      Begin VB.TextBox txtry 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   3150
+         MaxLength       =   4
+         TabIndex        =   42
+         Text            =   "0"
+         Top             =   1635
+         Width           =   495
+      End
+      Begin VB.Label Label11 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Angle:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   73
+         Top             =   1650
+         Width           =   450
+      End
+      Begin VB.Label Label1 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Vector X1:"
+         Height          =   195
+         Left            =   1950
+         TabIndex        =   72
+         Top             =   285
+         Width           =   750
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Vector X2:"
+         Height          =   195
+         Left            =   1950
+         TabIndex        =   71
+         Top             =   525
+         Width           =   750
+      End
+      Begin VB.Label Label3 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Vector Y1:"
+         Height          =   195
+         Left            =   1950
+         TabIndex        =   70
+         Top             =   765
+         Width           =   750
+      End
+      Begin VB.Label Label4 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Vector Y2"
+         Height          =   195
+         Left            =   1950
+         TabIndex        =   69
+         Top             =   1005
+         Width           =   705
+      End
+      Begin VB.Label Label5 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Life Range (L):"
+         Height          =   195
+         Left            =   3915
+         TabIndex        =   68
+         Top             =   285
+         Width           =   1050
+      End
+      Begin VB.Label Label6 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Life Range (H):"
+         Height          =   195
+         Left            =   3915
+         TabIndex        =   67
+         Top             =   525
+         Width           =   1080
+      End
+      Begin VB.Label Label7 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Fricción:"
+         Height          =   195
+         Left            =   4320
+         TabIndex        =   66
+         Top             =   885
+         Width           =   600
+      End
+      Begin VB.Label Label15 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Y2:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   65
+         Top             =   1245
+         Width           =   240
+      End
+      Begin VB.Label Label14 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Y1:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   64
+         Top             =   1005
+         Width           =   240
+      End
+      Begin VB.Label lblPCount 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "# of Particles:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   63
+         Top             =   285
+         Width           =   975
+      End
+      Begin VB.Label Label9 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "X1:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   62
+         Top             =   525
+         Width           =   240
+      End
+      Begin VB.Label Label10 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "X2:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   61
+         Top             =   765
+         Width           =   240
+      End
+      Begin VB.Label Label32 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Resize Y:"
+         Height          =   195
+         Left            =   2400
+         TabIndex        =   60
+         Top             =   1680
+         Width           =   675
+      End
+      Begin VB.Label Label33 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Resize X:"
+         Height          =   195
+         Left            =   2400
+         TabIndex        =   59
+         Top             =   1440
+         Width           =   675
+      End
+   End
+   Begin VB.CommandButton cmdDM 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Index           =   9
+      Left            =   16080
+      Picture         =   "frmMain.frx":4E3A
+      Style           =   1  'Graphical
+      TabIndex        =   130
+      Top             =   9960
+      Width           =   240
+   End
+   Begin VB.CommandButton cmdDM 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Index           =   8
+      Left            =   15840
+      Picture         =   "frmMain.frx":512C
+      Style           =   1  'Graphical
+      TabIndex        =   129
+      Top             =   10200
+      Width           =   240
+   End
+   Begin VB.CommandButton cmdDM 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Index           =   7
+      Left            =   16320
+      Picture         =   "frmMain.frx":541C
+      Style           =   1  'Graphical
+      TabIndex        =   128
+      Top             =   10200
+      Width           =   240
+   End
+   Begin VB.CommandButton cmdDM 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Index           =   6
+      Left            =   16080
+      Picture         =   "frmMain.frx":570B
+      Style           =   1  'Graphical
+      TabIndex        =   127
+      Top             =   10440
+      Width           =   240
+   End
+   Begin VB.CommandButton cmdDM 
+      Caption         =   "O"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Index           =   5
+      Left            =   16080
+      Style           =   1  'Graphical
+      TabIndex        =   126
+      Top             =   10200
+      Width           =   240
+   End
+   Begin VB.TextBox txtUserY 
+      Height          =   285
+      Left            =   11520
+      TabIndex        =   125
+      Text            =   "Text3"
+      Top             =   10800
+      Width           =   1215
+   End
+   Begin VB.TextBox TxtUserX 
+      Height          =   285
+      Left            =   11520
+      TabIndex        =   124
+      Text            =   "Text2"
+      Top             =   10440
+      Width           =   1215
+   End
    Begin VB.Frame Frame4 
       Caption         =   "Opciones"
       Height          =   2655
@@ -38,6 +569,109 @@ Begin VB.Form frmMain
       TabIndex        =   109
       Top             =   8400
       Width           =   3015
+      Begin VB.CommandButton cmdDM 
+         Caption         =   "O"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   4
+         Left            =   2280
+         Style           =   1  'Graphical
+         TabIndex        =   123
+         Top             =   1440
+         Width           =   240
+      End
+      Begin VB.CommandButton cmdDM 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   3
+         Left            =   2280
+         Picture         =   "frmMain.frx":59F2
+         Style           =   1  'Graphical
+         TabIndex        =   122
+         Top             =   1680
+         Width           =   240
+      End
+      Begin VB.CommandButton cmdDM 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   2
+         Left            =   2520
+         Picture         =   "frmMain.frx":5CD9
+         Style           =   1  'Graphical
+         TabIndex        =   121
+         Top             =   1440
+         Width           =   240
+      End
+      Begin VB.CommandButton cmdDM 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   1
+         Left            =   2040
+         Picture         =   "frmMain.frx":5FC8
+         Style           =   1  'Graphical
+         TabIndex        =   120
+         Top             =   1440
+         Width           =   240
+      End
+      Begin VB.CommandButton cmdDM 
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   0
+         Left            =   2280
+         Picture         =   "frmMain.frx":62B8
+         Style           =   1  'Graphical
+         TabIndex        =   119
+         Top             =   1200
+         Width           =   240
+      End
+      Begin VB.TextBox Text1 
+         Height          =   375
+         Left            =   1320
+         TabIndex        =   117
+         Text            =   "33277"
+         Top             =   2040
+         Width           =   1335
+      End
       Begin VB.OptionButton Option4 
          Caption         =   "Arena"
          Height          =   195
@@ -54,7 +688,7 @@ Begin VB.Form frmMain
          MaskColor       =   &H00E0E0E0&
          TabIndex        =   115
          Top             =   1920
-         Width           =   1215
+         Width           =   975
       End
       Begin VB.OptionButton Option1 
          Caption         =   "Pasto"
@@ -63,7 +697,7 @@ Begin VB.Form frmMain
          MaskColor       =   &H00E0E0E0&
          TabIndex        =   114
          Top             =   1680
-         Width           =   1215
+         Width           =   855
       End
       Begin VB.OptionButton Option2 
          Caption         =   "Nada"
@@ -90,7 +724,27 @@ Begin VB.Form frmMain
          Left            =   120
          TabIndex        =   110
          Top             =   720
+         Value           =   1  'Checked
          Width           =   2055
+      End
+      Begin VB.Label lblMoverGRH 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Mover GRH"
+         Height          =   195
+         Index           =   1
+         Left            =   1200
+         TabIndex        =   137
+         Top             =   1200
+         Width           =   810
+      End
+      Begin VB.Label lblGrafico 
+         Caption         =   "Grh Nº"
+         Height          =   255
+         Left            =   1320
+         TabIndex        =   118
+         Top             =   1800
+         Width           =   975
       End
       Begin VB.Label Label36 
          Alignment       =   2  'Center
@@ -105,7 +759,7 @@ Begin VB.Form frmMain
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   840
+         Left            =   120
          TabIndex        =   112
          Top             =   1080
          Width           =   975
@@ -387,331 +1041,6 @@ Begin VB.Form frmMain
          Width           =   300
       End
    End
-   Begin VB.Frame frmSettings 
-      BorderStyle     =   0  'None
-      Height          =   2190
-      Left            =   480
-      TabIndex        =   41
-      Top             =   8775
-      Width           =   6600
-      Begin VB.TextBox txtrx 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   3150
-         MaxLength       =   4
-         TabIndex        =   58
-         Text            =   "0"
-         Top             =   1395
-         Width           =   495
-      End
-      Begin VB.TextBox txtPCount 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   1320
-         MaxLength       =   4
-         TabIndex        =   57
-         Text            =   "20"
-         Top             =   240
-         Width           =   495
-      End
-      Begin VB.TextBox txtX1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   1320
-         MaxLength       =   4
-         TabIndex        =   56
-         Text            =   "0"
-         Top             =   480
-         Width           =   495
-      End
-      Begin VB.TextBox txtX2 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   1320
-         MaxLength       =   4
-         TabIndex        =   55
-         Text            =   "0"
-         Top             =   720
-         Width           =   495
-      End
-      Begin VB.TextBox txtY1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   1320
-         MaxLength       =   4
-         TabIndex        =   54
-         Text            =   "0"
-         Top             =   960
-         Width           =   495
-      End
-      Begin VB.TextBox txtY2 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   1320
-         MaxLength       =   4
-         TabIndex        =   53
-         Text            =   "0"
-         Top             =   1200
-         Width           =   495
-      End
-      Begin VB.TextBox txtAngle 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   1320
-         MaxLength       =   4
-         TabIndex        =   52
-         Text            =   "0"
-         Top             =   1605
-         Width           =   495
-      End
-      Begin VB.TextBox vecx1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   3150
-         MaxLength       =   4
-         TabIndex        =   51
-         Text            =   "-10"
-         Top             =   240
-         Width           =   495
-      End
-      Begin VB.TextBox vecx2 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   3150
-         MaxLength       =   4
-         TabIndex        =   50
-         Text            =   "10"
-         Top             =   480
-         Width           =   495
-      End
-      Begin VB.TextBox vecy1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   3150
-         MaxLength       =   4
-         TabIndex        =   49
-         Text            =   "-50"
-         Top             =   720
-         Width           =   495
-      End
-      Begin VB.TextBox vecy2 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   3150
-         MaxLength       =   4
-         TabIndex        =   48
-         Text            =   "0"
-         Top             =   960
-         Width           =   495
-      End
-      Begin VB.TextBox life1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   5115
-         MaxLength       =   4
-         TabIndex        =   47
-         Text            =   "10"
-         Top             =   240
-         Width           =   495
-      End
-      Begin VB.TextBox life2 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   5115
-         MaxLength       =   4
-         TabIndex        =   46
-         Text            =   "50"
-         Top             =   480
-         Width           =   495
-      End
-      Begin VB.TextBox fric 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   5115
-         MaxLength       =   4
-         TabIndex        =   45
-         Text            =   "5"
-         Top             =   840
-         Width           =   495
-      End
-      Begin VB.CheckBox chkAlphaBlend 
-         Caption         =   "Alpha Blend"
-         Height          =   255
-         Left            =   3930
-         TabIndex        =   44
-         Top             =   1320
-         Value           =   1  'Checked
-         Width           =   1215
-      End
-      Begin VB.CheckBox chkresize 
-         Caption         =   "Resize"
-         Height          =   195
-         Left            =   1920
-         TabIndex        =   43
-         Top             =   1920
-         Width           =   1245
-      End
-      Begin VB.TextBox txtry 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   3150
-         MaxLength       =   4
-         TabIndex        =   42
-         Text            =   "0"
-         Top             =   1635
-         Width           =   495
-      End
-      Begin VB.Label Label11 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Angle:"
-         Height          =   195
-         Left            =   120
-         TabIndex        =   73
-         Top             =   1650
-         Width           =   450
-      End
-      Begin VB.Label Label1 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Vector X1:"
-         Height          =   195
-         Left            =   1950
-         TabIndex        =   72
-         Top             =   285
-         Width           =   750
-      End
-      Begin VB.Label Label2 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Vector X2:"
-         Height          =   195
-         Left            =   1950
-         TabIndex        =   71
-         Top             =   525
-         Width           =   750
-      End
-      Begin VB.Label Label3 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Vector Y1:"
-         Height          =   195
-         Left            =   1950
-         TabIndex        =   70
-         Top             =   765
-         Width           =   750
-      End
-      Begin VB.Label Label4 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Vector Y2"
-         Height          =   195
-         Left            =   1950
-         TabIndex        =   69
-         Top             =   1005
-         Width           =   705
-      End
-      Begin VB.Label Label5 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Life Range (L):"
-         Height          =   195
-         Left            =   3915
-         TabIndex        =   68
-         Top             =   285
-         Width           =   1050
-      End
-      Begin VB.Label Label6 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Life Range (H):"
-         Height          =   195
-         Left            =   3915
-         TabIndex        =   67
-         Top             =   525
-         Width           =   1080
-      End
-      Begin VB.Label Label7 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Fricción:"
-         Height          =   195
-         Left            =   4320
-         TabIndex        =   66
-         Top             =   885
-         Width           =   600
-      End
-      Begin VB.Label Label15 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Y2:"
-         Height          =   195
-         Left            =   120
-         TabIndex        =   65
-         Top             =   1245
-         Width           =   240
-      End
-      Begin VB.Label Label14 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Y1:"
-         Height          =   195
-         Left            =   120
-         TabIndex        =   64
-         Top             =   1005
-         Width           =   240
-      End
-      Begin VB.Label lblPCount 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "# of Particles:"
-         Height          =   195
-         Left            =   120
-         TabIndex        =   63
-         Top             =   285
-         Width           =   975
-      End
-      Begin VB.Label Label9 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "X1:"
-         Height          =   195
-         Left            =   120
-         TabIndex        =   62
-         Top             =   525
-         Width           =   240
-      End
-      Begin VB.Label Label10 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "X2:"
-         Height          =   195
-         Left            =   120
-         TabIndex        =   61
-         Top             =   765
-         Width           =   240
-      End
-      Begin VB.Label Label32 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Resize Y:"
-         Height          =   195
-         Left            =   1950
-         TabIndex        =   60
-         Top             =   1680
-         Width           =   675
-      End
-      Begin VB.Label Label33 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Resize X:"
-         Height          =   195
-         Left            =   1950
-         TabIndex        =   59
-         Top             =   1440
-         Width           =   675
-      End
-   End
    Begin VB.Frame frameColorSettings 
       BorderStyle     =   0  'None
       Caption         =   "Color Tint Settings"
@@ -903,18 +1232,18 @@ Begin VB.Form frmMain
    End
    Begin VB.ListBox lstStreamType 
       Height          =   4545
-      Left            =   11520
+      Left            =   11280
       TabIndex        =   18
       Top             =   600
-      Width           =   1935
+      Width           =   3495
    End
    Begin VB.Frame frameGrhs 
       Caption         =   "Parametros de graficos"
       Height          =   4515
-      Left            =   11400
+      Left            =   11280
       TabIndex        =   9
       Top             =   5280
-      Width           =   4050
+      Width           =   5610
       Begin VB.PictureBox picPreview 
          Appearance      =   0  'Flat
          BackColor       =   &H00000000&
@@ -924,57 +1253,57 @@ Begin VB.Form frmMain
          Left            =   120
          ScaleHeight     =   131.097
          ScaleMode       =   0  'User
-         ScaleWidth      =   240
+         ScaleWidth      =   344
          TabIndex        =   107
          Top             =   2400
-         Width           =   3600
+         Width           =   5160
       End
       Begin VB.CommandButton cmdClear 
          Caption         =   "&Limpiar"
-         Height          =   255
-         Left            =   1590
+         Height          =   375
+         Left            =   2640
          TabIndex        =   14
-         Top             =   1080
-         Width           =   735
+         Top             =   1800
+         Width           =   975
       End
       Begin VB.ListBox lstGrhs 
          Height          =   1620
-         Left            =   45
+         Left            =   120
          TabIndex        =   13
-         Top             =   450
-         Width           =   1500
+         Top             =   480
+         Width           =   1860
       End
       Begin VB.ListBox lstSelGrhs 
          Height          =   1620
-         Left            =   2385
+         Left            =   3825
          TabIndex        =   12
-         Top             =   450
+         Top             =   570
          Width           =   1530
       End
       Begin VB.CommandButton cmdAdd 
          Caption         =   "&Agregar"
-         Height          =   255
-         Left            =   1590
+         Height          =   375
+         Left            =   2640
          TabIndex        =   11
-         Top             =   480
-         Width           =   735
+         Top             =   600
+         Width           =   975
       End
       Begin VB.CommandButton cmdDelete 
          Caption         =   "&Quitar"
-         Height          =   255
-         Left            =   1590
+         Height          =   375
+         Left            =   2640
          TabIndex        =   10
-         Top             =   780
-         Width           =   735
+         Top             =   1200
+         Width           =   975
       End
       Begin VB.Label Label20 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
          Caption         =   "Lista de graficos"
          Height          =   195
-         Left            =   60
+         Left            =   240
          TabIndex        =   17
-         Top             =   255
+         Top             =   240
          Width           =   1170
       End
       Begin VB.Label Label21 
@@ -982,9 +1311,9 @@ Begin VB.Form frmMain
          BackStyle       =   0  'Transparent
          Caption         =   "Graficos de Particulas"
          Height          =   195
-         Left            =   2370
+         Left            =   3810
          TabIndex        =   16
-         Top             =   240
+         Top             =   360
          Width           =   1545
       End
       Begin VB.Label Label28 
@@ -999,7 +1328,7 @@ Begin VB.Form frmMain
    Begin VB.Frame Frame3 
       Caption         =   "Opciones"
       Height          =   4815
-      Left            =   13530
+      Left            =   14880
       TabIndex        =   3
       Top             =   480
       Width           =   2040
@@ -1024,7 +1353,7 @@ Begin VB.Form frmMain
          Left            =   240
          TabIndex        =   102
          Text            =   "Text1"
-         Top             =   3000
+         Top             =   2760
          Visible         =   0   'False
          Width           =   1575
       End
@@ -1033,7 +1362,7 @@ Begin VB.Form frmMain
          Height          =   375
          Left            =   240
          TabIndex        =   8
-         Top             =   3960
+         Top             =   3720
          Visible         =   0   'False
          Width           =   1935
       End
@@ -1042,7 +1371,7 @@ Begin VB.Form frmMain
          Height          =   375
          Left            =   240
          TabIndex        =   7
-         Top             =   3600
+         Top             =   3240
          Visible         =   0   'False
          Width           =   1935
       End
@@ -1148,11 +1477,10 @@ Begin VB.Form frmMain
       _ExtentY        =   741
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       DisableNoScroll =   -1  'True
-      TextRTF         =   $"frmMain.frx":4282
+      TextRTF         =   $"frmMain.frx":65AA
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Tahoma"
          Size            =   8.25
@@ -1238,6 +1566,17 @@ Begin VB.Form frmMain
          EndProperty
       EndProperty
    End
+   Begin VB.Label lblMoverGRH 
+      AutoSize        =   -1  'True
+      BackStyle       =   0  'Transparent
+      Caption         =   "Mover Grh de a 32 px"
+      Height          =   195
+      Index           =   0
+      Left            =   15360
+      TabIndex        =   136
+      Top             =   10800
+      Width           =   1560
+   End
    Begin VB.Label lblStreamType 
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
@@ -1318,6 +1657,63 @@ For loopc = 1 To StreamData(lstStreamType.ListIndex + 1).NumGrhs
 Next loopc
 End Sub
 
+Private Sub cmdDM_Click(index As Integer)
+
+
+Select Case index
+    Case 0 'A
+        userX = userX - 1
+    Case 1 '<
+        userY = userY - 1
+    Case 2 '>
+        userY = userY + 1
+    Case 3 'V
+        userX = userX + 1
+    Case 4 '0
+        userX = 220
+        userY = 340
+      
+    Case 5 'A
+        userX = 220
+        userY = 340
+    Case 6 '<
+        userX = userX + 32
+    Case 7 '>
+        userY = userY + 32
+    Case 9 'V
+        userX = userX - 32
+    Case 8 '0
+        userY = userY - 32
+               
+    Case 11 'A
+        txtX1 = txtX1 - 1
+        txtX2 = txtX2 - 1
+        engine.Engine_Meteo_Particle_Set (lstStreamType.ListIndex + 1)
+    Case 12 '<
+        txtX1 = txtX1 + 1
+        txtX2 = txtX2 + 1
+        engine.Engine_Meteo_Particle_Set (lstStreamType.ListIndex + 1)
+    Case 10 '>
+        txtY1 = txtY1 - 1
+        txtY2 = txtY2 - 1
+        engine.Engine_Meteo_Particle_Set (lstStreamType.ListIndex + 1)
+    Case 13 'V
+        txtY1 = txtY1 + 1
+        txtY2 = txtY2 + 1
+        engine.Engine_Meteo_Particle_Set (lstStreamType.ListIndex + 1)
+    Case 14 '0
+        txtY1 = 16
+        txtY2 = 16
+        txtX1 = 16
+        txtX2 = 16
+        engine.Engine_Meteo_Particle_Set (lstStreamType.ListIndex + 1)
+End Select
+
+frmMain.TxtUserX.Text = userX
+frmMain.txtUserY.Text = userY
+
+End Sub
+
 Private Sub cmdNewParticle_Click()
 Call cmdNewStream_Click
 End Sub
@@ -1339,6 +1735,11 @@ namesito = InputBox("Por favor ingrese el nuevo nombre", "Cambiar Nombre")
 If namesito = "" Then Exit Sub
 StreamData(lstStreamType.ListIndex + 1).Name = namesito
 
+'ReyarB
+    Me.lstStreamType.Clear
+    Call cmdSaveAll_Click
+    LoadGrhData
+    Call CargarParticulasBinary
 
 End Sub
 
@@ -1372,6 +1773,10 @@ StreamData(NewStreamNumber) = StreamData(lstStreamType.ListIndex + 1)
 
 End Sub
 
+Private Sub Command6_Click()
+
+End Sub
+
 Private Sub Form_Load()
 Me.Caption = "Editor de Particulas por Ladder - Revolucion-Ao"
 lstColorSets.AddItem "Bottom Left"
@@ -1388,6 +1793,8 @@ lstColorSets.AddItem "Bottom Left"
     frameGravity.Visible = False
 CurStreamFile = DirInits & "Particles.ini"
 engine.Fill_Grh_List lstGrhs
+frmMain.TxtUserX.Text = 340
+frmMain.txtUserY.Text = 220
 End Sub
 
 Private Sub Option1_Click()
@@ -1442,6 +1849,8 @@ Private Sub lstStreamType_Click()
 Dim loopc As Long
 Dim DataTemp As Boolean
 DataTemp = DataChanged
+
+
 
 'Set the values
 txtPCount.Text = StreamData(lstStreamType.ListIndex + 1).NumOfParticles
@@ -1988,6 +2397,15 @@ On Error Resume Next
 StreamData(frmMain.lstStreamType.ListIndex + 1).grh_resizey = txtry.Text
 End Sub
 
+Private Sub TxtUserX_Change()
+userX = frmMain.TxtUserX.Text
+End Sub
+
+Private Sub txtUserY_Change()
+userY = frmMain.txtUserY.Text
+
+End Sub
+
 Private Sub vecx1_GotFocus()
 
 vecx1.SelStart = 0
@@ -2338,14 +2756,14 @@ End If
 
 End Sub
 
-Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     MouseBoton = Button
     MouseShift = Shift
 End Sub
 
-Private Sub Form_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    clicX = X
-    clicY = Y
+Private Sub Form_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+    clicX = x
+    clicY = y
 End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)

@@ -6,7 +6,8 @@ Public DataChanged As Boolean
 Public CurStreamFile As String
 Public GraficosTotales As Long
 
-
+Public userX As Integer
+Public userY As Integer
 
 Public Fondo As Byte
 
