@@ -11,7 +11,7 @@ On Error GoTo ErrorHandler
     Dim Grh As Long
     Dim Frame As Long
     Dim grhCount As Long
-    Dim handle As Integer
+    Dim handle As Long
     Dim fileVersion As Long
     
     'Open files
@@ -32,12 +32,12 @@ On Error GoTo ErrorHandler
     
     While Not EOF(handle)
         Get handle, , Grh
-        
         With GrhData(Grh)
             'Get number of frames
             Get handle, , .NumFrames
-            If .NumFrames <= 0 Then GoTo ErrorHandler
-            
+            If .NumFrames < 0 Then
+                GoTo ErrorHandler
+            End If
             ReDim .Frames(1 To GrhData(Grh).NumFrames)
             
             If .NumFrames > 1 Then
@@ -51,36 +51,56 @@ On Error GoTo ErrorHandler
                 
                 Get handle, , .speed
                 
-                If .speed <= 0 Then GoTo ErrorHandler
+                If .speed < 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 'Compute width and height
                 .pixelHeight = GrhData(.Frames(1)).pixelHeight
-                If .pixelHeight <= 0 Then GoTo ErrorHandler
+                If .pixelHeight < 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 .pixelWidth = GrhData(.Frames(1)).pixelWidth
-                If .pixelWidth <= 0 Then GoTo ErrorHandler
+                If .pixelWidth < 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 .TileWidth = GrhData(.Frames(1)).TileWidth
-                If .TileWidth <= 0 Then GoTo ErrorHandler
+                If .TileWidth < 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 .TileHeight = GrhData(.Frames(1)).TileHeight
-                If .TileHeight <= 0 Then GoTo ErrorHandler
+                If .TileHeight < 0 Then
+                    GoTo ErrorHandler
+                End If
             Else
                 'Read in normal GRH data
                 Get handle, , .FileNum
-                If .FileNum <= 0 Then GoTo ErrorHandler
+                If .FileNum <= 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 Get handle, , GrhData(Grh).sX
-                If .sX < 0 Then GoTo ErrorHandler
+                If .sX < 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 Get handle, , .sY
-                If .sY < 0 Then GoTo ErrorHandler
+                If .sY < 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 Get handle, , .pixelWidth
-                If .pixelWidth <= 0 Then GoTo ErrorHandler
+                If .pixelWidth <= 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 Get handle, , .pixelHeight
-                If .pixelHeight <= 0 Then GoTo ErrorHandler
+                If .pixelHeight <= 0 Then
+                    GoTo ErrorHandler
+                End If
                 
                 'Compute width and height
                 .TileWidth = .pixelWidth / 32

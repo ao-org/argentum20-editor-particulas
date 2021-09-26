@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.ocx"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
 Begin VB.Form frmMain 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   4  'Fixed ToolWindow
@@ -463,7 +463,7 @@ Begin VB.Form frmMain
       EndProperty
       Height          =   240
       Index           =   9
-      Left            =   16080
+      Left            =   15840
       Picture         =   "frmMain.frx":4E3A
       Style           =   1  'Graphical
       TabIndex        =   130
@@ -482,7 +482,7 @@ Begin VB.Form frmMain
       EndProperty
       Height          =   240
       Index           =   8
-      Left            =   15840
+      Left            =   15600
       Picture         =   "frmMain.frx":512C
       Style           =   1  'Graphical
       TabIndex        =   129
@@ -501,7 +501,7 @@ Begin VB.Form frmMain
       EndProperty
       Height          =   240
       Index           =   7
-      Left            =   16320
+      Left            =   16080
       Picture         =   "frmMain.frx":541C
       Style           =   1  'Graphical
       TabIndex        =   128
@@ -520,7 +520,7 @@ Begin VB.Form frmMain
       EndProperty
       Height          =   240
       Index           =   6
-      Left            =   16080
+      Left            =   15840
       Picture         =   "frmMain.frx":570B
       Style           =   1  'Graphical
       TabIndex        =   127
@@ -540,7 +540,7 @@ Begin VB.Form frmMain
       EndProperty
       Height          =   240
       Index           =   5
-      Left            =   16080
+      Left            =   15840
       Style           =   1  'Graphical
       TabIndex        =   126
       Top             =   10200
@@ -727,7 +727,7 @@ Begin VB.Form frmMain
          Value           =   1  'Checked
          Width           =   2055
       End
-      Begin VB.Label lblMoverGRH 
+      Begin VB.Label lblMoverGrh 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
          Caption         =   "Mover GRH"
@@ -1462,7 +1462,7 @@ Begin VB.Form frmMain
    Begin VB.Timer SpoofCheck 
       Interval        =   1000
       Left            =   14280
-      Top             =   360
+      Top             =   120
    End
    Begin RichTextLib.RichTextBox RecTxt 
       Height          =   420
@@ -1477,6 +1477,7 @@ Begin VB.Form frmMain
       _ExtentY        =   741
       _Version        =   393217
       BackColor       =   0
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       DisableNoScroll =   -1  'True
@@ -1566,16 +1567,27 @@ Begin VB.Form frmMain
          EndProperty
       EndProperty
    End
-   Begin VB.Label lblMoverGRH 
+   Begin VB.Label lblMoverGrh 
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
-      Caption         =   "Mover Grh de a 32 px"
+      Caption         =   "Mover Grh de a 16 px en X"
       Height          =   195
+      Index           =   2
+      Left            =   14880
+      TabIndex        =   138
+      Top             =   10920
+      Width           =   1920
+   End
+   Begin VB.Label lblMoverGrh 
+      AutoSize        =   -1  'True
+      BackStyle       =   0  'Transparent
+      Caption         =   "Mover Grh de a 32 px en Y"
+      Height          =   315
       Index           =   0
-      Left            =   15360
+      Left            =   14880
       TabIndex        =   136
-      Top             =   10800
-      Width           =   1560
+      Top             =   10680
+      Width           =   2040
    End
    Begin VB.Label lblStreamType 
       AutoSize        =   -1  'True
@@ -1670,20 +1682,20 @@ Select Case index
     Case 3 'V
         userX = userX + 1
     Case 4 '0
-        userX = 220
-        userY = 340
+        userX = 230
+        userY = 350
       
     Case 5 'A
-        userX = 220
-        userY = 340
+        userX = 230
+        userY = 350
     Case 6 '<
         userX = userX + 32
     Case 7 '>
-        userY = userY + 32
+        userY = userY + 16
     Case 9 'V
         userX = userX - 32
     Case 8 '0
-        userY = userY - 32
+        userY = userY - 16
                
     Case 11 'A
         txtX1 = txtX1 - 1
@@ -1763,13 +1775,16 @@ lstStreamType.AddItem NewStreamNumber & " - " & Name
 'Add 1 to TotalStreams
 TotalStreams = TotalStreams + 1
 
+
 'ReDim StreamData(1 To NewStreamNumber) As Stream
 
 'Add stream data to StreamData array
-
-
 StreamData(NewStreamNumber) = StreamData(lstStreamType.ListIndex + 1)
 
+    Me.lstStreamType.Clear
+    Call cmdSaveAll_Click
+    LoadGrhData
+    Call CargarParticulasBinary
 
 End Sub
 

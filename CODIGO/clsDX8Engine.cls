@@ -54,7 +54,7 @@ Public Enum FontAlignment
     fa_topright = DT_TOP Or DT_RIGHT
 End Enum
 
-Dim Texture As Direct3DTexture8
+Dim texture As Direct3DTexture8
 Dim TransTexture As Direct3DTexture8
 
 Private Declare Function QueryPerformanceFrequency Lib "kernel32" (lpFrequency As Currency) As Long
@@ -163,7 +163,7 @@ Private Type particle_group
     frame_counter As Single
     frame_speed As Single
     
-    stream_type As Byte
+    stream_type As Integer
 
     particle_stream() As Particle
     particle_count As Long
@@ -780,7 +780,7 @@ If MostrarBody Then
 Grafico = frmMain.Text1.Text
     If Grafico = 33277 Then
          Call Draw_GrhIndex(33277, 335, 195)
-         Call Draw_GrhIndex(2531, 336, 216)
+         Call Draw_GrhIndex(2606, 335, 216)
     Else
         Call Draw_GrhIndex(Grafico, userY, userX)
     End If
@@ -1012,7 +1012,7 @@ Private Sub Device_Box_Textured_Render_Advance(ByVal GrhIndex As Long, ByVal des
     Static light_value(0 To 3) As Long
 
     If GrhIndex = 0 Then Exit Sub
-    Set d3dTextures.Texture = SurfaceDB.GetTexture(GrhData(GrhIndex).FileNum, d3dTextures.texwidth, d3dTextures.texheight)
+    Set d3dTextures.texture = SurfaceDB.GetTexture(GrhData(GrhIndex).FileNum, d3dTextures.texwidth, d3dTextures.texheight)
     
     light_value(0) = Rgb_List(0)
     light_value(1) = Rgb_List(1)
@@ -1051,7 +1051,7 @@ Private Sub Device_Box_Textured_Render_Advance(ByVal GrhIndex As Long, ByVal des
     Geometry_Create_Box temp_verts(), dest_rect, src_rect, light_value(), d3dTextures.texwidth, d3dTextures.texheight, angle
         
     'Set Textures
-    D3DDevice.SetTexture 0, d3dTextures.Texture
+    D3DDevice.SetTexture 0, d3dTextures.texture
     
     If alpha_blend Then
        'Set Rendering for alphablending
@@ -1085,7 +1085,7 @@ Public Sub Device_Box_Textured_Render(ByVal GrhIndex As Long, ByVal dest_x As In
     Static light_value(0 To 3) As Long
     
     If GrhIndex = 0 Then Exit Sub
-    Set d3dTextures.Texture = SurfaceDB.GetTexture(GrhData(GrhIndex).FileNum, d3dTextures.texwidth, d3dTextures.texheight)
+    Set d3dTextures.texture = SurfaceDB.GetTexture(GrhData(GrhIndex).FileNum, d3dTextures.texwidth, d3dTextures.texheight)
     
     light_value(0) = Rgb_List(0)
     light_value(1) = Rgb_List(1)
@@ -1124,7 +1124,7 @@ Public Sub Device_Box_Textured_Render(ByVal GrhIndex As Long, ByVal dest_x As In
     Geometry_Create_Box temp_verts(), dest_rect, src_rect, light_value(), d3dTextures.texwidth, d3dTextures.texheight, angle
     
     'Set Textures
-    D3DDevice.SetTexture 0, d3dTextures.Texture
+    D3DDevice.SetTexture 0, d3dTextures.texture
     
     If alpha_blend Then
        'Set Rendering for alphablending
@@ -1322,14 +1322,14 @@ Public Function Particle_Group_Remove_All() As Boolean
 'Last Modify Date: 1/04/2003
 '
 '*****************************************************************
-    Dim Index As Long
+    Dim index As Long
     
-    For Index = 1 To particle_group_last
+    For index = 1 To particle_group_last
         'Make sure it's a legal index
-        If Particle_Group_Check(Index) Then
-            Particle_Group_Destroy Index
+        If Particle_Group_Check(index) Then
+            Particle_Group_Destroy index
         End If
-    Next Index
+    Next index
     
     Particle_Group_Remove_All = True
 End Function
